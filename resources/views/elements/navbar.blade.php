@@ -18,29 +18,31 @@
             @auth
             <!-- si esta autentificado -->
                 <li id="initial" class="nav-item">
-                    <a class="nav-link active" href="{{ route('messages.index') }}">
-                        Mensajes
+                    <a class="nav-link active" href="{{ route('message.index') }}">
+                        <span class="fa fa-envelope-open">
+                                Mensajes
+                        </span>
                     </a>
                 </li>
                 <li id="initial" class="nav-item">
-                    <a class="nav-link active" href="{{ route('messages.index') }}">
+                    <a class="nav-link active" href="{{ route('message.create') }}">
+                            <span class="fa fa-envelope">
                         Nuevo mensaje
+                            </span>
+                    </a>
+                </li>
+                <li id="initial" class="nav-item">
+                    <a class="nav-link active" href="{{ route('user.show', Auth::user()->id) }}">
+                        <span class="fa fa-address-card">
+                            Perfil
+                        </span>
                     </a>
                 </li>
             @endauth
             </ul>
 
             <ul class="navbar-nav navbar-right ">
-                    <li class="nav-item dropdown active">
-                      <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-flag"></i>
-                        Idioma
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="">Euskara</a>
-                        <a class="dropdown-item active" href="">Castellano</a>
-                      </div>
-                    </li>
+                    
                     @guest  
                     <!-- si es un invitado -->
                             <li class="nav-item">
@@ -58,10 +60,6 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profile') }}"><span class="fa fa-address-card">
-                                        Perfil
-                                        </span>
-                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

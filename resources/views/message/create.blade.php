@@ -5,35 +5,24 @@
     <div class="container">
         <h2>Enviar Mensaje</h2>
         <hr>
-
-        <form action="{{ route('messages.store') }}" method="POST">
-            {{ csrf_field() }}
-            <div class="form-group row">
-                <label for="to" class="col-form-label col-sm-2" >To</label>
-                <div class="col-sm-6">
-                    <input id="to" name="to" class="form-control{{ $errors->has('to') ? ' is-invalid' : '' }}" value="{{old('to')}}">
-                    @if ($errors->has('to'))
-                        <div class="invalid-feedback">
-                            <strong>{{ $errors->first('to') }}</strong>
-                        </div>
-                    @endif
-                </div>
-
+        <form method="post" action="/message">
+            <div class="form-group">
+                @csrf
+                <label for="receiver_id">Destinatario:</label>
+                <select name="receiver_id" id="receiver_id">
+                    @foreach ($users as $user)
+                <option value="{{ $user->id }}">{{ $user->name }}</option>    
+                    @endforeach
+                </select>
             </div>
-            <div class="form-group row">
-                <label for="message" class="col-form-label col-sm-2" >Mensaje</label>
-                <div class="col-sm-6">
-                    <textarea id="message" name="message" class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" rows="5">{{old('message')}}</textarea>
-                    @if ($errors->has('message'))
-                        <div class="invalid-feedback">
-                            <strong>{{ $errors->first('message') }}</strong>
-                        </div>
-                    @endif
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="text">Mensaje:</label>
+                  <textarea class="form-control" name="text" id="text" rows="5">
+                  </textarea>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary topButtonProfile">
-                Enviar Mensaje
-            </button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
 

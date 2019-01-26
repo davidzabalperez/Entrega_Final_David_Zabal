@@ -1,6 +1,5 @@
 <?php
 
-
 Route::get('/welcome', function () {
     return view('welcome_basic');
 })->middleware('auth.basic');
@@ -32,3 +31,6 @@ Route::get('/getMessages',
         'uses'=>'MessageController@index'
     ])->middleware('auth');
 Auth::routes(['verify'=> true]);
+
+Route::resource('message', 'MessageController')->middleware('auth');
+Route::resource('user', 'UserController')->middleware('auth');

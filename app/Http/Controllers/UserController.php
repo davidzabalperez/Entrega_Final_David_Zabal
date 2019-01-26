@@ -1,15 +1,12 @@
 <?php
-namespace App\Http\Controllers;
 
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
-class MessageController extends Controller
+class UserController extends Controller
 {
     public function __construct()
      {
@@ -22,8 +19,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::where('receiver_id', Auth::user()->id)->get();
-        return view('message.index', compact('messages'));
+        
     }
 
     /**
@@ -33,8 +29,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        $users = User::where('id','!=', Auth::user()->id)->get();
-        return view('message.create', compact('users'));
+        //
     }
 
     /**
@@ -45,18 +40,7 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'receiver_id'=>'required',
-            'text' => 'required'
-          ]);
-        $message = new Message();
-        $message->sender_id = Auth::user()->id;
-        $message->receiver_id = $request->input('receiver_id');
-        $message->text = $request->input('text');
-        $message->save();
-        return redirect('/message')->with('success', 'Mensaje enviado'); 
-
-
+        //
     }
 
     /**
@@ -67,7 +51,8 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::where('id',Auth::user()->id)->get();
+        return view('user.index', compact('user'));
     }
 
     /**
@@ -90,7 +75,12 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user= User::find($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
+        return redirect('/');
+        
     }
 
     /**
@@ -101,8 +91,6 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        $message = Message::find($id);
-        $message->delete();
-     return redirect('/message')->with('success', 'Mensaje eliminado correctamente');
+        //
     }
 }
