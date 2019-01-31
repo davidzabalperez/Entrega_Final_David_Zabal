@@ -45,10 +45,15 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'receiver_id'=>'required',
-            'text' => 'required'
-          ]);
+        request()->validate([
+            'receiver_id'=>'required|string',
+            'text' => 'required|min:5'
+        ],[
+            'receiver_id.string' => 'introduce un texto',
+            'receiver_id.required' => 'este campo es requerido',
+            'text.required' => 'este campo es requerido',
+            'text.min' => 'minimo 5 caracteres',
+        ]);
         $message = new Message();
         $message->sender_id = Auth::user()->id;
         $message->receiver_id = $request->input('receiver_id');

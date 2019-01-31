@@ -5,26 +5,23 @@
 <br>
 <br>
 <div class="container">
-  <div class="alert-danger">
-    <ul>
-        @if( $errors->any() )
-          @foreach ($errors as $error)
-              <li>$error</li>
-          @endforeach
-        @endif
-    </ul>
-  </div>
-        
         <form action="{{ route('user.update', Auth::user()->id) }} " method="post">
           @method('PATCH')
           @csrf
              {{-- <input type="hidden" name="id" value="{{ Auth::user()->id }}"> --}} 
             <input type="text" name="name" id="name" value="{{ Auth::user()->name }}">
-            <button type="submit" class="btn btn-primary">cambiar nombre</button>
             <br>
+            {{$errors->first('name')}}
             <br>
             <input type="text" name="email" id="email" value="{{ Auth::user()->email }}">
-            <button type="submit" class="btn btn-primary">cambiar email</button>
+            <br>
+            {{$errors->first('email')}}
+            <p> </p>
+            <input placeholder="contraseña nueva" type="password" name="password" id="password" value="">
+            <br>
+            {{$errors->first('password')}}
+            <p></p>
+            <button type="submit" class="btn btn-primary">cambiar datos</button>
             </form>
 </div>
 

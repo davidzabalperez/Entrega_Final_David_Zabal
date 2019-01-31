@@ -75,18 +75,22 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /* request()->validate([
+        request()->validate([
             'name'=>'string|max:50|min:4',
             'email'=>'email',
+            'password'=>'min:8',
         ],[
             'name.string' => 'introduce un texto',
             'name.min' => 'minimo 4 caracteres',
             'name.max' => 'maximo 50 caracteres',
             'email.email' => 'introduce un email valido',
-        ]); */
+            'password.min' => 'minimo 8 caracteres',
+
+        ]);
         $user= User::find($id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->password = bcrypt(request()->password);
         $user->save();
         return redirect('/user/'.$id);
         
