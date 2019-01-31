@@ -24,7 +24,4 @@
             <button type="submit" class="btn btn-primary">cambiar datos</button>
             </form>
 </div>
-
-  
-
 @endsection

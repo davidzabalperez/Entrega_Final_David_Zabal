@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppController extends Controller
 {
@@ -16,6 +17,9 @@ class AppController extends Controller
   public function index()
   {
       return view('home');
+
+    /* $userNameCookie = cookie('userName',Auth::user()->name, 60);
+    return response()->view('home')->cookie($userNameCookie); */
   }
   public function getLogin(){
       return view('auth.login');

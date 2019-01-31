@@ -16,13 +16,20 @@
                     @endif
 
                     UNIDAD 6 'AUTENTIFICACION'
+                    <p></p>
+                    @if (Cookie::get('userName') != null)
+                    Esto es una cookie:
+                    {{ Cookie::get('userName')}}
+                    @else
+                        {{'No hay cookie'}}
+                    @endif
+                    
                     @auth
                     @if(Auth::user()->hasRole('admin'))
                         <div>Acceso como administrador</div>
                     @else
                         <div>Acceso usuario</div>
-                    @endif
-                    You are logged in!    
+                    @endif    
                     @endauth
                     
                 </div>

@@ -13,9 +13,12 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $request->user()->authorizeRoles(['user', 'admin']);
-        return view('home');
+        $userNameCookie = cookie('userName',Auth::user()->name, 6);
+        return response()->view('home')->cookie($userNameCookie);
     }
-/*
+    //response nobre de la cookie valor y tiempo de duracion en nuestro navegador 60 minutos
+    /* return response('')->cookie('cookie','valor',60); */
+    /*
     public function someAdminStuff(Request $request)
     {
         $request->user()->authorizeRoles(‘admin’);
