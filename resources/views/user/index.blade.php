@@ -5,6 +5,16 @@
 <br>
 <br>
 <div class="container">
+  <div class="alert-danger">
+    <ul>
+        @if( $errors->any() )
+          @foreach ($errors as $error)
+              <li>$error</li>
+          @endforeach
+        @endif
+    </ul>
+  </div>
+        
         <form action="{{ route('user.update', Auth::user()->id) }} " method="post">
           @method('PATCH')
           @csrf

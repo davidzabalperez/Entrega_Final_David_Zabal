@@ -31,10 +31,10 @@ class AlterMessages extends Migration
     public function down()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->dropForeign('mensajes_receiver_id_foreign');
-            $table->dropForeign('mensajes_sender_id_foreign');
+            /* $table->dropForeign('receiver_id');
+            $table->dropForeign('sender_id');
             $table->dropColumn('receiver_id');
-            $table->dropColumn('sender_id');
+            $table->dropColumn('sender_id'); */
         });
     }
 }
