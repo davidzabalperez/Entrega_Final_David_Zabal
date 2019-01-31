@@ -19,6 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $request->session()->put('id', Auth::user()->id);
         $userNameCookie = cookie('userName',Auth::user()->name, 60);
         return response()->view('home')->cookie($userNameCookie);
     }
