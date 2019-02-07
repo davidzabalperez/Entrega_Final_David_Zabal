@@ -25,11 +25,15 @@
                     @endif
                     
                     @auth
+
                     @if(Auth::user()->hasRole('admin'))
-                        <div>Acceso como administrador</div>
+                        <div>Tienes Acceso como administrador</div>
                     @else
-                        <div>Acceso usuario</div>
-                    @endif    
+                        <div>Tienes Acceso usuario</div>
+                    @endif 
+                    @if(Auth::user()->hasRole('admin')&&Auth::user()->hasRole('user'))
+                        <div>Tienes Acceso como administrador y Usuario</div>
+                    @endif 
                     @endauth
                     
                 </div>
