@@ -33,4 +33,5 @@ Route::get('/getMessages',
 Auth::routes(['verify'=> true]);
 
 Route::resource('message', 'MessageController')->middleware('auth');
+
 Route::resource('user', 'UserController')->middleware('auth');

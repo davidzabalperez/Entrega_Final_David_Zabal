@@ -17,7 +17,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $request->session()->put('id', Auth::user()->id);
         $userNameCookie = cookie('userName',Auth::user()->name, 60);
